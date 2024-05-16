@@ -11,6 +11,9 @@ export const decksAPI = {
   fetchDecks() {
     return instance.get<FetchDecksResponseType>(`v2/decks`)
   },
+  addDeck(params: AddDeckParamsType) {
+    return instance.post<DeckType>(`v1/decks`, params)
+  }
 }
 
 // types
@@ -43,6 +46,12 @@ type PaginationType = {
   itemsPerPage: number
   totalPages: number
   totalItems: number
+}
+
+export type AddDeckParamsType = {
+  name: string
+  cover?: string
+  isPrivate?: boolean
 }
 
 
