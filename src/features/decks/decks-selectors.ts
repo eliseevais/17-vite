@@ -1,7 +1,3 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { AppRootState } from '../../app/store.ts'
 
-// export const selectDecks = () => {
-//   const deck = useSelector((state) => state.decks)
-//   return <div>{deck}</div>
-// }
+export const selectDecks = (state: AppRootState) => state.decksReducer.decks

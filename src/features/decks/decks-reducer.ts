@@ -1,7 +1,7 @@
 import { DeckType } from './decks-a-p-i.ts'
 
 const initialState = {
-  decks: [] as DeckType[], // todo: add type
+  decks: [] as DeckType[],
   searchParams: {
     name: '',
   },
@@ -9,9 +9,9 @@ const initialState = {
 
 export const decksReducer = (state: DecksState = initialState, action: DecksActions): DecksState => {
   switch (action.type) {
-    case 'SET-DECKS': {
+    case 'DECKS/SET-DECKS': {
       const stateCopy = {...state};
-      stateCopy.decks = [...action.decks];
+      stateCopy.decks = action.decks;
       return stateCopy
     }
     default:
@@ -20,11 +20,11 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
 }
 
 export const setDecksAC = (decks: Array<DeckType>) => (
-  { type: 'SET-DECKS', decks } as const
+  { type: 'DECKS/SET-DECKS', decks } as const
 )
 
 
 // TYPES
+type SetDecksActionType = ReturnType<typeof setDecksAC>;
 type DecksState = typeof initialState;
-type SetDecksActionType = ReturnType<typeof setDecksAC>
 type DecksActions = SetDecksActionType;
